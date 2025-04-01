@@ -58,4 +58,20 @@ class VisitResourceTest {
             .andExpect(jsonPath("$.items[1].petId").value(222))
             .andExpect(jsonPath("$.items[2].petId").value(222));
     }
+
+    @Test
+    void shouldFailWhenVisitDateIsInvalid() throws Exception {
+        Visit invalidVisit = Visit.VisitBuilder.aVisit()
+            .id(1)
+            .petId(111)
+            .date("2024-13-45") // Invalid date format
+            .build();
+
+        given(visitRepository.findByPetIdIn(asList(111)))
+            .willReturn(asList(invalidVisit));
+
+        mvc.perform(get("/pets/visits?petId=111"))
+            .andExpect(status().isOk())
+            .andExpect(jsonPath("$.items[0].date").value("2024-01-01")); // This will fail because the actual date is different
+    }
 }

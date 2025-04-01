@@ -57,6 +57,11 @@ class PetResourceTest {
             .andExpect(jsonPath("$.type.id").value(6));
     }
 
+    @Test
+    void shouldFailIntentionally() {
+        assert false : "This test is intentionally failing to demonstrate Jenkins build failure";
+    }
+
     private Pet setupPet() {
         Owner owner = new Owner();
         owner.setFirstName("George");
