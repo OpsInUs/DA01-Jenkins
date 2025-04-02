@@ -130,8 +130,8 @@ pipeline {
                 }
             }
         }
-
-                stage('Check Code Coverage') {
+      
+              stage('Check Code Coverage') {
             steps {
                 script {
                     def failedServices = []
