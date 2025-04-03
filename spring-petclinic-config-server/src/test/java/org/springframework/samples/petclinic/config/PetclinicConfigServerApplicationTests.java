@@ -23,6 +23,8 @@ class PetclinicConfigServerApplicationTests {
 
 	@Test
 	void contextLoads() {
+        assert true;
 	}
+
 
 }
