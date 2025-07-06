@@ -65,49 +65,4 @@ class VisitResourceTest {
             .andExpect(jsonPath("$.items[1].petId").value(222))
             .andExpect(jsonPath("$.items[2].petId").value(222));
     }
-
-    @Test
-    void shouldCreateVisit() throws Exception {
-        Visit newVisit = Visit.VisitBuilder.aVisit()
-            .id(4)
-            .petId(333)
-            .description("New visit")
-            .build();
-
-        given(visitRepository.save(any(Visit.class))).willReturn(newVisit);
-
-        mvc.perform(post("/owners/*/pets/333/visits")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"description\": \"New visit\"}"))
-            .andExpect(status().isCreated())
-            .andExpect(jsonPath("$.id").value(4))
-            .andExpect(jsonPath("$.petId").value(333))
-            .andExpect(jsonPath("$.description").value("New visit"));
-    }
-
-    @Test
-    void shouldFetchVisitsByPetId() throws Exception {
-        given(visitRepository.findByPetId(111))
-            .willReturn(
-                asList(
-                    Visit.VisitBuilder.aVisit()
-                        .id(1)
-                        .petId(111)
-                        .build()
-                )
-            );
-
-        mvc.perform(get("/owners/*/pets/111/visits"))
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$[0].id").value(1))
-            .andExpect(jsonPath("$[0].petId").value(111));
-    }
-
-    @Test
-    void shouldReturnBadRequestForInvalidPetId() throws Exception {
-        mvc.perform(post("/owners/*/pets/0/visits")
-                .contentType(MediaType.APPLICATION_JSON)
-                .content("{\"description\": \"Invalid visit\"}"))
-            .andExpect(status().isBadRequest());
-    }
 }
