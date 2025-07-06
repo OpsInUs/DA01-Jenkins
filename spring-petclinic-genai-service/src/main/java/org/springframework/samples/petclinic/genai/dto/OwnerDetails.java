@@ -16,7 +16,7 @@
 package org.springframework.samples.petclinic.genai.dto;
 
 import java.util.List;
-//test
+//test 2
 /**
  * Simple Data Transfer Object representing an owner.
  *
