@@ -41,7 +41,7 @@ class OwnerResourceTest {
    void setUp() {
        mockMvc = MockMvcBuilders.standaloneSetup(ownerResource).build();
    }
-/*
+
    @Test
    void shouldCreateOwner_WhenValidRequest() throws Exception {
        Owner owner = new Owner();
@@ -235,6 +235,9 @@ class OwnerResourceTest {
 
         assert true;
     }
-*/
+
+
+
+    
 
 }
