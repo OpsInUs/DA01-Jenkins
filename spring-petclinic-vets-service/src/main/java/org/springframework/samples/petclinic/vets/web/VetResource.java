@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * @author Juergen Hoeller
+ * @author Juergen Hoeller S
  * @author Mark Fisher
  * @author Ken Krebs
  * @author Arjen Poutsma
